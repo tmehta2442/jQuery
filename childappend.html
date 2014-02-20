@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<script src="jQuery.js"></script>
+	<script>
+	$(document).ready(function(){
+		// child selector
+		$('.book.inactive > p').css('display', 'none');
+		// appended the following text
+		$('.book.inactive').append("Sorry this book is sold out!").css('color', 'red');
+	});
+	</script>
+
+	<body>
+		<div class='book inactive'>
+			<p>Travel Guide to NYC</p>
+		</div>
+		<div class='book active'>
+			<p>Travel Guide to SF</p>
+		</div>
+		<div class='book inactive'>
+			<p>Travel Guide to Seattle</p>
+		</div>
+		<div class='book active'>
+			<p>Travel Guide to Miami</p>
+		</div>
+		<div class='book active'>
+			<p>Travel Guide to Palo Alto</p>
+		</div>
+
+	</body>
+</html>

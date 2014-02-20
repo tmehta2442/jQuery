@@ -1,0 +1,27 @@
+<!-- multiple css selector w/ jQuery & classes -->
+<!doctype html>
+<html>
+	<head>
+	<script src="jQuery.js"></script>
+	<script>
+	$(document).ready(function(){
+		// {} around multiple css properties
+		// padding ~ "free" space around pic
+		// border ~ border around the padded area
+		// width ~ width of padded area
+		$('.turtlepic').css({'padding': '10px', 
+			'border':'1px solid #ccc', 'width':'150px'});
+	});
+	</script>
+
+	<body>
+		<div id='container'>
+			<h1>Nice Turtle</h1>
+			<div class='turtlepic'><img src="images/turtle.jpg"></div>
+			<div class='turtlepic'><img src="images/turtle.jpg"></div>
+			<div class='turtlepic'><img src="images/turtle.jpg"></div>
+			<div class='turtlepic'><img src="images/turtle.jpg"></div>
+			<div class='turtlepic'><img src="images/turtle.jpg"></div>
+		</div>
+	</body>
+</html>
