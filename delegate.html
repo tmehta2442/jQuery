@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+	<script src="jQuery.js"></script>
+	<script>
+	//whats going on here?
+	//1. looking for the class genre
+	//2. only the "first()" one
+	//3. use the delegate method to traverse further down DOM to album cover
+	// and wait for a click event
+	//4. upon a click, the function to clone and add a class
+	// ~ '.genre:first" only to first element... try without... it will add to each element!'
+		$(document).ready(function(){
+			$('.genre').first().delegate(".album-cover", "click", function(){
+				$(this).clone().addClass('rock').appendTo('.genre:first');
+			});
+		});
+	</script>
+
+	<body>
+		<div class="genre">
+			<div class="album-cover">one</div>
+		</div>
+		<div class="genre">
+			<div class="album-cover">two</div>
+		</div>
+		<div class="genre">
+			<div class="album-cover">three</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+	<style>
+		.bird {border: 1px solid#ccc; width: 200px; margin: 5px;}
+	</style>
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('div[class$="bird"]').addClass('bird');
+		});
+	</script>
+
+	<body>
+		<div id="red-bird">red</div>
+	</body>
+	<body>
+		<div id="green-bird">green</div>
+	</body>
+	<body>
+		<div class="blue-bird">blue</div>
+	</body>
+</html>

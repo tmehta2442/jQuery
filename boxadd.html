@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+	<script src="jQuery.js"></script>
+	<script>
+		// $(document).ready(function(){
+		// 	// note the click event only works on
+		// 	// element at the time of DOM load, not the "new" blahhs!
+		// 	$('.box').bind("click", function(){
+		// 		$(this).clone().appendTo('.container');
+		// 	});
+		// });
+		// .live resolves that problem... but it has been deprecated... .on() instead
+		$(document).ready(function(){
+			$('.box').on("click", function(){
+				$(this).clone().appendTo('.container');
+			});
+		});
+	</script>
+
+	<body>
+		<div class="container">
+			<div class="box">
+				blahh
+			</div>
+		</div>
+	</body>
+</html>

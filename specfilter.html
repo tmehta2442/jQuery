@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+	<head>
+	<script src='jQuery.js'></script>
+	<script>
+	$(document).ready(function(){
+		$('.content:has(p)').css('font-size', '30px');
+	});
+	</script>
+
+	<body>
+		<div id="main">
+			<div class="content">
+			<p>Content yo</p>
+			</div>
+			<div class="alternate">
+			<p>Alternate yo</p>
+			</div>
+		</div>
+	</body>
+</html>

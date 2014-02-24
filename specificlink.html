@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+	<style>
+		.google-icon {background:url(images/google_icon.jpg) no-repeat;padding:0px 30px;}
+	</style>
+
+	<script src='jQuery.js'></script>
+
+	<script>
+	$(document).ready(function(){
+		$('ul li a[href*="google.com"]').addClass('google-icon');
+	});
+	</script>
+
+	<body>
+		<ul>
+			<li><a href='http://www.google.com/analytics'>Google Analytics</a></li>
+			<li><a href="http://www.google.com/blahh">Google blahh</a></li>
+			<li><a href="http://www.cnn.com">CNN</a></li>
+		</ul>
+	</body>
+</html>

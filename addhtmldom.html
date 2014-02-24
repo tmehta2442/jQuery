@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function(){
+			//changing the class content using the html... chaning html ~ text
+			// but be aware any html will pass as regular text, not html
+			// append()
+			// prepend() => both within the div
+			//
+			// before() & after() inserted outside the selected element
+			$('.content').after('<div class="main">Hello jQuery.</div>');
+		});
+	</script>
+
+	<body>
+		<div class="content">
+			<p>I run 4 times a week haha.</p>
+			<p>I lift weigths never.</p>
+		</div>
+	</body>
+</html>

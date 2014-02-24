@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+	<script src="jQuery.js"></script>
+	<script>
+		// $(document).ready(function(){
+		// 	$('.mylink').bind("click", alertMe);
+
+		// 	function alertMe(){
+		// 		alert("GTFO");
+		// 	}
+		// });
+		// function literal way
+		$(document).ready(function(){
+			$('.mylink').bind("click", function(){
+				alert("I thought I told you to GTFO")
+			});
+		});
+	</script>
+
+	<body>
+		<div class="mylink">
+			<a href="http://www.cnn.com">cnn</a>
+		</div>
+	</body>
+</html>
