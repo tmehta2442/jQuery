@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('.add-to-cart').bind({
+				mousedown : function() {
+					$(this).css('border', '3px solid red');
+				},
+				mouseup : function() {
+					$(this).css('border', '3px solid #ccc');
+					$('.cart').append('Apple phone now in the cart<br>');
+					$('.cart h2').text('Shopping cart has 1 item!');
+					$('.product').hide();
+				}
+			});
+		});
+	</script>
+
+	<body>
+		<div class="cart">
+			<h2>SHopping Cart</h2>
+		</div>
+		<div class="product">
+			<h3>Apple iPhone 4</h3>
+			<div class="product-image"><img src="images/iphone.jpg"
+				title="Steve Jobs w/ phone">
+			</div>
+			<p class="info">an iphone, yo</p>
+			<p class="price">$299.99</p>
+			<div class="add-to-cart">Double click here</div>
+		</div>
+	</body>
+</html>

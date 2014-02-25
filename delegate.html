@@ -11,7 +11,7 @@
 	//4. upon a click, the function to clone and add a class
 	// ~ '.genre:first" only to first element... try without... it will add to each element!'
 		$(document).ready(function(){
-			$('.genre').first().delegate(".album-cover", "click", function(){
+			$('.genre').first().delegate(".album-cover", "mouseover", function(){
 				$(this).clone().addClass('rock').appendTo('.genre:first');
 			});
 		});

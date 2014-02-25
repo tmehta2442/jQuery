@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+	<style>
+		body {font-family: arial;}
+		#content {display: none;}
+	</style>
+
+	<script src="jQuery.js"></script>
+	<script>
+	// when hovering over link will SHOW
+		$(document).ready(function(){
+			$('.content-link').mouseenter(function(){
+				$('#content').show();
+			});
+	// when mouse no longer hovering will HIDE
+			$('.content-link').mouseleave(function(){
+				$('#content').hide();
+			});
+		});
+	</script>
+
+	<body>
+		<h1>Yayo</h1>
+		<p>asd;lfjklasdflkas;dfljkasldkansTEST vl;kmasd;lfjk lasdflkas;dfljkasldkansvl;kmasd;lfj klasdflkas;dfljkasldkansvl;kmasd;lfjklasd flkas;dfljkasldkansvl;km</p>
+
+		<a href="#" class="content-link">Show me more yo</a>
+		<div id="content">
+			<p>eat more beans. eat more beanseat more beanseat more beanseat more beanseat more beanseat more beanseat more beanseat more beanseat more beans</p>
+		</div>
+	</body>
+</html>
