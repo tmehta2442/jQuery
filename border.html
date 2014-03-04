@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#first-name").bind('blur', function(event){
+				event.preventDefault();
+				$(this).css('border', '1px solid red');
+			});
+		});
+	</script>
+
+	<body>
+		<input type="text" name="firstname" id="first-name" />
+		<input type="text" name="firstname" id="first-name" />
+	</body>
+</html>

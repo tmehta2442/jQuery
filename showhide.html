@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+	<style>
+	.recipe {
+		display: none;
+	}
+	</style>
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('.recipe-name').click(function(){
+				$('.recipe').toggle("slow");
+			});
+		});
+	</script>
+
+	<body>
+		<a href="#" class="recipe-name">Tog's Pie</a>
+		<div class="recipe">
+			Jack Daniels and Coke... yum.
+		</div>
+	</body>
+
+</html>

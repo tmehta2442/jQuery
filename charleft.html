@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="jQuery.js"></script>
+	<script>
+		var maxNum = 100;
+		$(document).ready(function(){
+			$('#status').bind({
+				keypress: function() {
+					var inputText = $(this).val();
+					var numChar = inputText.length;
+					var charRemain = numChar - maxNum;
+					if (numChar <= maxNum) {
+						$('.counter').text(charRemain)
+					} else if (numChar > maxNum) {
+						event.preventDefault();
+					}
+				}
+			});
+		});
+	</script>
+
+	<body>
+		<textarea cols="50" rows="5" id="status"></textarea>
+		<div class="counter"></div>
+	</body>
+</html>

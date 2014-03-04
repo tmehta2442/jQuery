@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+	<head>
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".button").hover(
+				function(){
+					$(this).attr('src', 'images/rollover_on_btn.gif');
+				},
+				function(){
+					$(this).attr('src', 'images/rollover_off_btn.gif');
+				});
+		});
+	</script>
+
+	<body>
+		<img src="images/rollover_off_btn.gif" class="button"
+		alt="Button" />
+	</body>
+</html>
