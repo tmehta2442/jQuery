@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('.show-tip').hover(function(){
+				$('.tool-tip').fadeIn(900);
+			},
+			function(){
+				$('.tool-tip').delay(3000).fadeOut(900);
+			});
+		});
+	</script>
+	<body>
+		<a href="#" class="show-tip">Learn about me</a>
+		<div class="tool-tip">
+			I like pizza. I like pizza. I like pizza. 
+			I like pizza. I like pizza. I like pizza. 
+			I like pizza. A lot! ;)
+		</div>
+
+	</body>
+</html>

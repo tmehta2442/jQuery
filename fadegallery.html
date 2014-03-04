@@ -50,15 +50,20 @@ var slideArray = [
 	"ansel_adams5.jpg"
 ];
 
+// 2. why this directory? when creating the fade in/out
+// we will take the directory and add the numSlide number to it
 var imgDir = "images/ansel_adams";
 
 var slideLength = slideArray.length;
 
-	 $(document).ready(function(){
-	 	$(".container").append('<div class="slide-image"></div>');
-	 	$('.slide-image').html('<img src="images/' + slideArray[0] + '"/>');
-		
-	 	$('.slide-image').after('<ul id="nav"></ul>');
+	$(document).ready(function(){
+		// 3. In the div class "container" we'll append/add a new
+		// div class called "slide-image"
+		$(".container").append('<div class="slide-image"></div>');
+		// 4. the creation of slide-image and respective image
+		$('.slide-image').html('<img src="images/' + slideArray[0] + '"/>');
+		// 5. A list w/ id of "nav", created next
+		$('.slide-image').after('<ul id="nav"></ul>');
 
 		for(var i = 0; i < slideLength; i++) {
 			var slideText = i + 1;
@@ -75,7 +80,7 @@ var slideLength = slideArray.length;
 			$(this).addClass('active');
 		});
 
-	 	$('#nav li a').eq(0).click();
+		$('#nav li a').eq(0).click();
 
 	});
 </script>

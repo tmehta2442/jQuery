@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <style>
+  body {font-family:arial;font-size:12px;}
+  #news-feed {background:#E9F7D4;border:1px solid #77A134;width:300px;list-style-type:none;padding:0;margin:0;height:235px;overflow:hidden;}
+  ul#news-feed li {padding:10px 5px;border-bottom:1px solid #77A134;margin-bottom:5px;}
+  </style>
+
+	<script src="jQuery.js"></script>
+	<script>
+		var newsArray = [
+		"one",
+		"two",
+		"three",
+		"four",
+		"five",
+		"six",
+		"seven",
+		"eight",
+		"nine",
+		"ten"]
+
+		var newsLength = newsArray.length;
+		var newsInterval = 2000;
+
+		$(document).ready(function(){
+			$('h1').after('<ul id="news-feed"></ul>');
+
+			for (var i = 0; i < newsLength; i++) {
+				$('#news-feed').append('<li>' + newsArray[i] + '</li>');
+			}
+
+			function slideHeadline() {
+				$('#news-feed li:last').clone().prependTo('#news-feed').css('display', 'none');
+				$('#news-feed li:first').fadeIn(1000).slideDown(500);
+				$('#news-feed li:last').remove();
+			}
+
+			setInterval (slideHeadline, newsInterval);
+
+		});
+		
+	</script>
+
+	<body>
+		<h1>Tog's News</h1>
+	</body>
+</html>
