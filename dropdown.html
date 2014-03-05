@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<link href="css/dropdown.css" rel="stylesheet" type="text/css" media="all" />
+	<script src="jQuery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#navigation li').hover(function(){
+				$(this).find('.subnav').slideDown('slow')
+				$(this).find('a').addClass('active');
+			}, function(){
+				$(this).find('.subnav').slideUp('fast');
+				$(this).find('a').removeClass("active");
+			});
+		});
+	</script>
+
+	<body>
+		<div class="container">
+			<div id="header">
+				<ul id="navigation">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Our Work</a>
+						<ul class="subnav">
+							<li><a href="#">Example 1</a></li>
+							<li><a href="#">Example 2</a></li>
+							<li><a href="#">Example 3</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Services</a>
+						<ul class="subnav">
+							<li><a href="#">Service 1</a></li>
+							<li><a href="#">Service 2</a></li>
+							<li><a href="#">Service 3</a></li>
+						</ul>
+					</li>
+					<li><a href="#">About Us</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

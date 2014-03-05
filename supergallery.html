@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+	<style>
+		body {
+			font-family: arial;
+		}
+
+		ul#nav {
+			list-style-type: none;
+			margin: 10px 0 10px;
+			padding: 0;
+		}
+
+		ul#nav li {
+			float: left;
+			width: 30px;
+		}
+
+		ul#nav li a {
+			text-decoration: none;
+			background: #05609A;
+			color: #fff;
+			padding: 5px;
+		}
+
+		ul#nav li a.active {
+			background: #B4f114;
+		}
+
+		.container {
+			position: relative;
+			height: 250px;
+			width: 400px;
+			border: 1px solid #333;
+			overflow: hidden;
+		}
+
+		.slide-container {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.slides {
+			float: right;
+		}
+
+		.slide-text {
+			display: none;
+			font-size: 18px;
+		}
+
+		img {
+			border: 0;
+		}
+
+		.textStrip {
+			top: 0px;
+			display: block;
+			position: absolute;
+			left: -400px;
+			padding: 5px;
+			background: #333333;
+			opacity: .9;
+			color: #ffffff;
+			width: 100px;
+		}
+	</style>
+
+	<script src="jQuery.js"></script>
+	<script src="jQuery.easing.js"></script>
+	<script>
+
+		var slideArray = [
+			"photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg"			
+		];
+
+		var textArray = [ "cable", "Tog's Dogs", "Plant Sink", "Tj Cowboy"
+		];
+
+		var urlArray = [ "http://www.google.com", "http://www.cnn.com",
+		"http://www.yahoo.com", "http://www.redsox.com" ];
+
+		var slideTotal = slideArray.length
+		var slideWidth = 400;
+		var slideContainer = slideWidth * slideTotal;
+
+		$(document).ready(function(){
+			// added to container, a slide container ;)
+			$(".container").append('<div class="slide-container" />');
+			//eventaul nav bar, wont yet show
+			$(".container").after('<ul id="nav" class="clearfix"></ul>');
+			//the slide number which will be shown will have "1"
+			//greater than the index of the array, and looped forward
+			// for(i = 0; i < slideArray.length; i++) {
+				
+			// }
+
+			for(i = 0; i < slideArray.length; i++) {
+				var slideNum = i + 1
+				var slideText = i + 1;
+				$("#nav").append('<li><a href="#" rel="'+ slideNum +'">' +
+					slideNum + '</a></li>');
+				var slideInfo = '<div class="slide-image' + slideNum +' slides">';
+				slideInfo += '<div class="slide-text">' + textArray[i] + '</div>';
+				slideInfo += '<img src="images/' + slideArray[i] + '"/></div>';
+				$('.slide-container').append(slideInfo);
+			}
+
+			$(".slide-container").css({'width': slideContainer});
+
+			$('#nav li a').bind("click", function(){
+				$("#nav li a").removeClass('active');
+				$(this).addClass("active");
+				$(".slide-text").css({
+					'top': '-100px',
+					'right': '0px'
+				});
+
+				$(".slide-text").stop();
+				$(".slide-text").clearQueue;
+
+				var active = $('#nav li a.active').attr("rel") - 1;
+				var slidePos = active * slideWidth;
+				var slideNum = $('#nav li a.active').attr("rel");
+
+				$(".slide-container").animate({
+					left: - slidePos,
+				},
+				'easeOutBounce', function (){
+					$(".slide-image" + slideNum + " .slide-text").addClass("textStrip").animate({
+						top: 0,
+						left: slidePos,
+						right: 0
+					}, 'easeOutBounce', function(){
+						$(".slide-text").delay(1000).animate({
+							top:-100
+						}, 1000);
+					});
+				});
+			});
+
+			// $(".slide-container").animate({
+			// 		left: -slidePos,
+			// 	}, 'easeOutBounce', function (){
+			// 		$(".slide-image" + slideNum + " .slide-text").css({
+			// 			'display': 'block',
+			// 			'position': 'absolute',
+			// 			'top': '0px',
+			// 			'left': '-400px',
+			// 			'padding': '5px',
+			// 			'background': '#333333',
+			// 			'opacity': '.9',
+			// 			'color': '#ffffff',
+			// 			'width': '100%'
+			// 		}).animate({
+			// 			top: 0,
+			// 			left: slidePos,
+			// 			right: 0,
+			// 		},
+			// 		'easeOutBounce', function(){
+			// 			$('.slide-text').delay(5000).animate({
+			// 				top: -100,
+			// 			}, 1000);
+			// 		});
+			// 	});
+			// });
+
+
+		});
+	</script>
+
+	<body>
+		<div class="container"></div>
+	</body>
+
+</html>
