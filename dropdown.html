@@ -3,12 +3,22 @@
 	<link href="css/dropdown.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="jQuery.js"></script>
 	<script>
+		// $(document).ready(function(){
+		// 	$('ul#navigation li').hover(function(){
+		// 		$(this).find('.subnav').slideDown('slow')
+		// 		$(this).find('a').addClass('active');
+		// 	}, function(){
+		// 		$(this).find('.subnav').slideUp('fast');
+		// 		$(this).find('a').removeClass("active");
+		// 	});
+		// });
+
 		$(document).ready(function(){
-			$('#navigation li').hover(function(){
-				$(this).find('.subnav').slideDown('slow')
-				$(this).find('a').addClass('active');
+			$('ul#navigation li').hover(function(){
+				$(this).find('.subnav').animate({opacity: 1.0, height: 'toggle'}, 500);
+				$(this).closest('a').addClass('active');
 			}, function(){
-				$(this).find('.subnav').slideUp('fast');
+				$(this).find('.subnav').animate({opacity: 0, height: 'toggle'}, 500);
 				$(this).find('a').removeClass("active");
 			});
 		});
