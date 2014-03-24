@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Pagination</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="bootstrap2/css/bootstrap.min.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="bootstrap2/js/bootstrap.js"></script> 
+  <!--<script type="text/javascript" src="bootstrap2/js/bootstrap-tooltip.js"></script> -->
+  <script type="text/javascript" src="js/jQuery.js"></script>
+  <script>
+  $(document).ready(function(){
+
+  $('#search').keyup(function()
+    {
+    searchTable($(this).val());
+    });
+  
+
+  function searchTable(inputVal) {
+  var table = $('#tblData');
+  table.find('tr').each(function(index, row)
+  {
+    var allCells = $(row).find('td');
+    if(allCells.length > 0)
+    {
+      var found = false;
+      allCells.each(function(index, td)
+      {
+        var regExp = new RegExp(inputVal, 'i');
+        if(regExp.test($(td).text()))
+        {
+          found = true;
+          return false;
+        }
+        });
+        if(found == true)$(row).show();else $(row).hide();
+      }
+    });
+  }
+    // using the table's id of tblData, after that id insert a div id=nav
+    // nav will eventually be used to hold the page num links.
+    $('#tblData').after('<ul class="pagination"></div>');
+
+    // this will be the number of rows that I wanna show
+    var rowsShown = 5;
+
+    // throwing into a variable (rowsTotal) the number of rows... who wouldda guessed that?
+    var rowsTotal = $('#tblData tr').length;
+    // alert(rowsTotal + ' = number of rows')
+
+    // fixed problem of wrong number of pages with rounding the number
+    var numPages = Math.round(rowsTotal/rowsShown)
+    // alert(numPages + ' = number of pages')
+
+    // this loop will create the page numbers. one is added to pageNum so that the
+    // actual page number will begin at one.
+    // selector statement selects the #nav, appends an anchor w/ rel tag.
+    // the page number is equalled to pageNum
+    for(i = 0 ; i < numPages ; i++ ) {
+      var pageNum = i + 1;
+      $('.pagination').append('<li><a href="#" rel="'+i+'">' + pageNum + '</a></li>');
+    }
+    //alert(pageNum + ' = number of pages')
+
+    // hiding all visible rows
+    $('#tblData tr').hide();
+
+    // shows first row... this is just the "info" bar of it
+    $('#tblData tr:first').show();
+
+    // here's the good stuff, now we'll show what we wanna show!
+    $('#tblData tr').slice(0, rowsShown).show();
+
+    // now to activate the anchor so that the link in question werks
+    $('.pagination a:first').addClass('active');
+
+    // oh yeah, need a click event... kinda important
+    $(',pagination a').bind('click', function(){
+      //remove active state from current link... you're already there afterall
+      $('.pagination a').removeClass('active');
+      //adds active class to link clicked
+      $(this).addClass('active');
+      // currPage will store the value of rel tag in our for loop
+      var currPage = $(this).attr('rel');
+      
+      var startItem = currPage * rowsShown;
+      var endItem = startItem + rowsShown;
+      $('#tblData tr').css('opacity','0.0').hide().slice(startItem, endItem).css('display','table-row').animate({opacity:1}, 300, function(){
+
+      });
+    });
+  });
+  </script>
+</head>
+
+<body id="body-default">
+  <div class="row">
+    <div class="span5 offset1">
+      <div class="tables">
+        <p>
+          <label for="search">
+            <strong>Enter ANYTHING to search yo</strong>
+          </label>
+          <input type="text" id="search"/>
+          <label>#, Person, Feature</label>
+        </p>
+        <table width="100%" id="tblData" class="target" bgcolor="#ACAAFC">
+          <tbody>
+            <tr>
+              <th width="10%">#</th>
+              <th width="35%">Person</th>
+              <th width="55%">Feature</th>
+            </tr>
+            <tr>
+              <td class="odd">1</td>
+              <td class="odd">Tejas</td>
+              <td class="odd">Pure Awesome </td>
+            </tr>
+            <tr>
+              <td class="even">2</td>
+              <td class="even">Jason</td>
+              <td class="even">Talks to too many women</td>
+            </tr>
+            <tr>
+              <td class="odd">3</td>
+              <td class="odd">Smith</td>
+              <td class="odd">Short</td>
+            </tr>
+            <tr>
+              <td class="even">4</td>
+              <td class="even">Santiago</td>
+              <td class="even">Mexican</td>
+            </tr>
+            <tr>
+              <td class="odd">5</td>
+              <td class="odd">Marco</td>
+              <td class="odd">Teacher</td>
+            </tr>
+            <tr>
+              <td class="even">6</td>
+              <td class="even">Bryan</td>
+              <td class="even">Geology</td>
+            </tr>
+            <tr>
+              <td class="odd">7</td>
+              <td class="odd">Jenny</td>
+              <td class="odd">Environmental stuff</td>
+            </tr>
+            <tr>
+              <td class="even">8</td>
+              <td class="even">Shindo</td>
+              <td class="even">Ice Skating</td>
+            </tr>
+            <tr>
+              <td class="odd">9</td>
+              <td class="odd">Wes</td>
+              <td class="odd">Beard</td>
+            </tr>
+            <tr>
+              <td class="even">10</td>
+              <td class="even">Saqi</td>
+              <td class="even">Wife</td>
+            </tr>
+            <tr>
+              <td class="odd">11</td>
+              <td class="odd">Sam</td>
+              <td class="odd">Code Guru</td>
+            </tr>
+            <tr>
+              <td class="even">12</td>
+              <td class="even">Wu</td>
+              <td class="even">General</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
