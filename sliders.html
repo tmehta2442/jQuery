@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jQuery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.slider-container label').on('click', {}, function(event, options) {
+            var label = $(this),
+                slider = label.siblings('.slider'),
+                options = options || {},
+                instant = event.data.instant || options.instant || false;
+
+            var left = label.position().left;
+            if (instant) {
+                slider.css({left: left});
+                label.siblings('label').removeClass('label-selected');
+                label.addClass('label-selected');
+            } else {
+                slider.animate(
+                    {left: left},
+                    {complete: function() {
+                        label.siblings('label').removeClass('label-selected');
+                        label.addClass('label-selected');
+                    }}
+                );
+            }
+            }).droppable({
+                drop: function(event, ui) {
+                    var label = $(this);
+                    label.siblings('label').removeClass('label-selected');
+                    label.addClass('label-selected').trigger('click', {});
+                }
+            });
+            $('.slider-container .slider').draggable({
+                axis: 'x',
+                containment: 'parent'
+            });
+            $('.slider-container input:checked').prev('label').trigger('click', {instant: true});
+        });
+    </script>
+</head>
+
+<body>
+    <style>
+    body { 
+    font-family: Arial,Helvetica,san-serif;
+    font-size: 13px;
+    }
+
+    .hidden { display: none; }
+
+    #datasets {
+        border: 0 none;
+        float: left;
+        margin: 20px 0 0;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    #datasets legend {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 0;
+    }
+
+    #datasets dl {
+        float: left;
+        overflow: hidden;
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    #datasets dt, #datasets dd {
+        float: left;
+        margin: 5px 0;
+    }
+
+    #datasets dt {
+        clear: left;
+        width: 75px;
+        line-height: 32px;
+        height: 32px;
+    }
+
+    .slider-container {
+        position: relative;
+        height: 32px;
+        overflow: hidden;
+        padding: 0 3px;
+    }
+
+    .slider-offOn {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO4AAAAfCAIAAABvQmbJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKGSURBVHhe7dxJqvJAGIVhTexREVtQUbEHcQWOnbldZ25CEdShHXYoYh+b+J/cCtyfu4JUOM8oVHT2UnwVG+f3+3X8Zzqdjsfj+Xx+vV5fr5e5SmQZ0Wg0k8nU6/V8Pm8u/fhNebfb9fv94XDodrt9Pp/X61VVVVEUcZfIIrDDapr2fD5rtVqz2UwkEmLdTHm5XHa7XdyORCK4F4vFgsGgqNnpdIqXElkB5oXL5bLf77H5vt/vdruNTRrrRspY6vV6p9MpnU4XCoVkMomOPR4POv58PuL9RNaBPfd8Pm+3W8zDSLTVamH/NeaHwWCAjjF5NBqNUqmElNEx1tkxWRP6TKVS5XIZxWIYnkwmWFTQ9Wg0wn5crVaxUWNQxqYt3kBkWagUraLYSqVyOBwwIaudTgerOA/mcjmXy2W+kEgGOMgFAgGMD7fbTVmtVpgzMFT4/X7zPpE80C2GDWzHCojnFZwrSEboVjxtU3RdD4VC4pxHJCN0jNlYUVVVXJnLRLJBwz6fzxgwgNMFyQvHPiNiXPHzPJIdGuZXLMgmmDLZBFMmm2DKZBNMmWyCKZNNMGWyCaZMNmGk/OeXqkTSQcOKx+PRdZ3fwSB5qT+Mz64fjwe/g0Hy+nw+xq6cSCTO57OmaeYykWxQr/EdjFwut9/vUTO2aPMOkTzQLer1+/1KNpuNRqObzeZ+v5s3ieSBbjFgoGHjCUaxWETX6/Ua5z9xm0gKKPZ4PIbDYVwbKcfj8UqlMpvNFovF8/nkpEHWh0rRKvbfQCAgUv79zzhMzMvlEhfi34nEr6T4ZIMsCOe8y+WCOBGx6Bj+/pMnhubT6YQLHAndbrf4mQmRdYgmcc7DfCxWDA7HP+8TEObCcWKiAAAAAElFTkSuQmCC) left top no-repeat;
+        width: 238px;
+    }
+
+    .slider-clickToSearch {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWIAAAAfCAYAAADdl8fRAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAAtpJREFUeF7t3clKI1EUh/GT0jIqGiTROKKicQDxCVz7yNn5EhEhCm6ccBYpI5o4tf9DVTrpVafbVG2+HwgdU24/Lqdu35v7+mZ/ODk5scPDQzs7O7Pn52d7e3uLvwEA9KpYLNr8/Lxtbm7a0tJS/NvfukJ8e3trtVrNDg4OLAxDGx4etnw+bwMDAxYEQfwUAKAXWsw2m01rtVq2sbFh29vbNjU1FX/bEeKLiwurVqv+4MTEhD9UKpVsbGysHeNcLud/BAD4e5osNBoNu7+/9wXv+/u77e7u+ipZPMT6Ym9vz6Iosrm5OVteXrZyuewRHhoa8gh/fHz4HwAAeqdF7tPTk93c3Pj4V03d2dnxRa/PG/b39z3Cml1sbW3Z6uqqh1gRFiIMAP9HPZ2enrZKpeKd1ej36OjIvwtU5nq97ivh9fV1XyprPqylMwDg56ir6qs6u7a2Zg8PDz4WDo6Pj30mrHHEzMwML+UAoM/U2dnZWZ9C3N3dWXB5eekzCo0iRkZG4scAAP2k3mpUoVXyd5iD9u4IxhEAkA71NtmVFnx+ftr4+Hj7xRwAIB2K8ODgoAXampZ8AACkR/3V7gkfTeiHsQQApEtbg73B+sD/mAOAbKi/7FUDgIwRYgDIGCEGgIwRYgDIGCEGgIwRYgDIGCEGgIwRYgDImIe449o6AECK1N9Ah/3o4B/OmgCAdOmsCf34WROvr6+cNQEAKdNZE74i1qHwutBOVz0DANKj7vpZE4uLi37Fs2KsJTIAoP/UW3VXN3UECwsLViwW7fr62l5eXuJHAAD9pN5qNKH++q6JlZUVL/PV1ZW/uAMA9I86+/j4aIVCwT97iCcnJ/1q59PTUzs/P7dWq8WYAgB+mLqqvmrROzo62g5x7qtjE7FmxbpjX3Src3Kxnba2sasCAP6dXsw1Gg1vqQKcRFi6QpzQvDiKIv+33uiFYejXeQAAepf0Uy/mNBPuZvYL+p4TE57llNYAAAAASUVORK5CYII=) left top no-repeat;
+        width: 348px;
+    }
+
+    .slider-container label {
+        cursor: pointer;
+        display: block;
+        float: left;
+        height: 20px;
+        line-height: 19px;
+        padding: 6px 8px;
+        text-align: center;
+        width: 100px;
+    }
+
+    .slider-container label.label-selected {
+        color: #003B50;
+        font-weight: bold;
+    }
+
+    .slider-container label.label-selected.label-off {
+        color: red;
+    }
+
+    .slider-container .slider {
+        background: url(data:image/gif;base64,R0lGODlhdwAcAPU8AGVlZWltbW9vb3J+f3qGh3mRkXyam03DxlDEx1bFyFvHyl3Iy27Jy23Mz3DKzXXO0XzP0X7R04GBgYGOjomJiY6bm5ShoZqmp4C2t4O5uom+v7m5uby8vJrP0IbQ0ovT1IrU1a7Gx6PNzqvJyq/IybXCwrvHyLLMzK7Z2r7Y2bXg4cHBwcjIyMrX18ff39bW1t3d3c/p6dTh4tzg4N7r6+Dg4Ofn5+jo6O7u7ubz8/Dw8PX4+AAAAAAAAAAAAAAAACH5BAUAADwALAAAAAB3ABwAAAb/QJ5wSCwaj8ikcslsOp9EFaiBOFiv2Kx2y+16v+BwF9H4oGzI2EfMbrvf8K4npSvmFAcFphAA+P+AgYKDhIWGh4iJhQEFGHgLJkURBwwDAhszUJqbnJ1LMxsEDAcQL0MqBwkTFDierq+wTzgXCQciN0JrGBIwsb6/wDwwGgcepjwPBwYbwc3OnCMHDyxCVQE1z9naSjMHCBxCVgDb5OVD3sw84ubs2lbp6+3ywVbg6gfj8/qx6OH4+wBdvfOXL6BBKPUIHlzoZOC9ggwjHkn4UKJFIw7jXdzoMJkBbBstppBmT1e6kBE7HABBjQeKVBZ6oVwoo5aIYzYgUKrQamZAgRoODkTYgEtICzwKMoTI5FOeiw4LDiwocUzIjhMe4mjdynWrBxIrjOB4IeJDgyxVtKRFyxbLWm9r41pB8Nab27pz59Z9S7ft3QYeRGx40dOIjRcsOGxYvIGDYsWNGz9e/Bhy5MmSGUOejLlzZsqRL4f27Fjz6MybJbN4UbSpax5BAAA7) -1px -1px no-repeat;
+        height: 26px;
+        width: 119px;
+        position: absolute;
+        left: 3px;
+        top: 3px;
+    }
+    </style>
+    <fieldset id="datasets">
+    <legend>Choose your Health Plan</legend>
+    <dl>
+        <dt>Dataset 1</dt>
+        <dd class="slider-container slider-offOn">
+            <label for="Dataset1Off" class="label-off ui-droppable">Off</label>
+            <input type="radio" value="off" id="Dataset1Off" name="Dataset1" class="hidden" />
+            <label for="Dataset1On" class="label-automatic ui-droppable label-selected">On</label>
+            <input type="radio" checked="checked" value="on" id="Dataset1On" name="Dataset1" class="hidden" />
+            <div class="slider ui-draggable" style="left: 119px;">&nbsp;</div>
+        </dd>
+        <dt>Dataset 2</dt>
+        <dd class="slider-container slider-clickToSearch">
+            <label for="Dataset2Off" class="label-off ui-droppable">Off</label>
+            <input type="radio" value="off" id="Dataset2Off" name="Dataset2" class="hidden" />
+            <label for="Dataset2Automatic" class="label-automatic ui-droppable label-selected">Automatic</label>
+            <input type="radio" value="automatic" id="Dataset2Automatic" name="Dataset2" class="hidden" />
+            <label for="Dataset2ClickToSearch" class="label-clickToSearch ui-droppable">Click to Search</label>
+            <input type="radio" checked="checked" value="onsearch" id="Dataset2ClickToSearch" name="Dataset2" class="hidden" />
+            <div class="slider ui-draggable" style="left: 119px;">&nbsp;</div>
+        </dd>
+        <dt>Dataset 3</dt>
+        <dd class="slider-container slider-clickToSearch">
+            <label for="Dataset3Off" class="label-off ui-droppable">Off</label>
+            <input type="radio" checked="checked" value="off" id="Dataset3Off" name="Dataset3" class="hidden" />
+            <label for="Dataset3Automatic" class="label-automatic ui-droppable label-selected">Automatic</label>
+            <input type="radio" value="automatic" id="Dataset3Automatic" name="Dataset3" class="hidden" />
+            <label for="Dataset3ClickToSearch" class="label-clickToSearch ui-droppable">Click to Search</label>
+            <input type="radio" value="onsearch" id="Dataset3ClickToSearch" name="Dataset3" class="hidden" />
+            <div class="slider ui-draggable" style="left: 119px;">&nbsp;</div>
+        </dd>
+        <dt>Dataset 4</dt>
+        <dd class="slider-container slider-clickToSearch">
+            <label for="Dataset4Off" class="label-off ui-droppable">Off</label>
+            <input type="radio" value="off" id="Dataset4Off" name="Dataset4" class="hidden" />
+            <label for="Dataset4Automatic" class="label-automatic ui-droppable label-selected">Automatic</label>
+            <input type="radio" checked="checked" value="automatic" id="Dataset4Automatic" name="Dataset4" class="hidden" />
+            <label for="Dataset4ClickToSearch" class="label-clickToSearch ui-droppable">Click to Search</label>
+            <input type="radio" value="onsearch" id="Dataset4ClickToSearch" name="Dataset4" class="hidden" />
+            <div class="slider ui-draggable" style="left: 119px;">&nbsp;</div>
+        </dd>
+        <dt>Dataset 5</dt>
+        <dd class="slider-container slider-clickToSearch">
+            <label for="Dataset5Off" class="label-off ui-droppable">Off</label>
+            <input type="radio" value="off" id="Dataset5Off" name="Dataset5" class="hidden" />
+            <label for="Dataset5Automatic" class="label-automatic ui-droppable label-selected">Automatic</label>
+            <input type="radio" checked="checked" value="automatic" id="Dataset5Automatic" name="Dataset5" class="hidden" />
+            <label for="Dataset5ClickToSearch" class="label-clickToSearch ui-droppable">Click to Search</label>
+            <input type="radio" value="onsearch" id="Dataset5ClickToSearch" name="Dataset5" class="hidden" />
+            <div class="slider ui-draggable" style="left: 119px;">&nbsp;</div>
+        </dd>
+    </dl>
+</fieldset>
+</body>
+</html>
